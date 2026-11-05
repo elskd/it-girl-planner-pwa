@@ -21,7 +21,7 @@ npm run preview
 
 Workflow `.github/workflows/deploy.yml` собирает проект при push в `main` и загружает `dist` в GitHub Pages. В репозитории открой **Settings → Pages → Build and deployment → Source → GitHub Actions**. Маршруты используют `HashRouter`, а Vite собирает ресурсы с относительным base path, поэтому имя репозитория задавать не требуется.
 
-Рабочая ссылка появится в разделе **Settings → Pages** после публикации. Локальный git-репозиторий создан на ветке `main`; GitHub remote ещё не подключён, потому что для входа в аккаунт требуется действие владельца. После создания нового публичного репозитория нужно отправить ветку `main`, а затем один раз выбрать GitHub Actions в настройках Pages.
+Публичный репозиторий: https://github.com/elskd/it-girl-planner-pwa. После отправки ветки `main` открой **Settings → Pages → Build and deployment → Source → GitHub Actions**. Ссылка на приложение появится там после успешного деплоя.
 
 ## Структура
 
