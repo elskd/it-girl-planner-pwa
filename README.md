@@ -23,7 +23,7 @@ npm run preview
 
 ## Публикация
 
-Workflow `.github/workflows/deploy.yml` собирает проект при push в `main` и загружает `dist` в GitHub Pages. В **Settings → Secrets and variables → Actions → Variables** добавь `VITE_SUPABASE_URL` и `VITE_SUPABASE_PUBLISHABLE_KEY` для сборки опубликованного приложения.
+Workflow `.github/workflows/deploy.yml` собирает проект при push в `main` и загружает `dist` в GitHub Pages. Production URL и publishable key хранятся в `.env.production`; publishable key предназначен для браузера и не является секретом. Локальные настройки разработки задаются в `.env.local`.
 
 В Supabase Auth → URL Configuration укажи **Site URL** `https://elskd.github.io/it-girl-planner-pwa/` и добавь в **Redirect URLs** `https://elskd.github.io/it-girl-planner-pwa/**`, `http://localhost:5173/**` и `http://127.0.0.1:5173/**`. Публичный репозиторий: https://github.com/elskd/it-girl-planner-pwa. Приложение: https://elskd.github.io/it-girl-planner-pwa/ .
 
