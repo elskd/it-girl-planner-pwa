@@ -88,6 +88,21 @@ export default function PlannerPage() {
     return result
   }, [tasks])
   const selectedTasks = tasksByDate.get(activeDate) ?? []
+  const conflictingTaskIds = useMemo(() => {
+    const conflicts = new Set<string>()
+    const scheduled = selectedTasks.filter(task => !task.completed_at && task.start_at && task.end_at)
+    for (let left = 0; left < scheduled.length; left += 1) {
+      for (let right = left + 1; right < scheduled.length; right += 1) {
+        const a = scheduled[left]
+        const b = scheduled[right]
+        if (Date.parse(a.start_at!) < Date.parse(b.end_at!) && Date.parse(b.start_at!) < Date.parse(a.end_at!)) {
+          conflicts.add(a.id)
+          conflicts.add(b.id)
+        }
+      }
+    }
+    return conflicts
+  }, [selectedTasks])
   const activeGoals = goals.filter(goal => goal.status === 'active' || goal.id === form.goalId)
   const monthLabel = formatCalendarDate(calendarAnchor, locale, { month: 'long', year: 'numeric' })
   const selectedLabel = formatCalendarDate(activeDate, locale, { weekday: 'long', day: 'numeric', month: 'long' })
@@ -284,6 +299,8 @@ export default function PlannerPage() {
             goal={goals.find(goal => goal.id === task.goal_id) ?? null}
             timezone={timezone}
             locale={locale}
+            overdue={!task.completed_at && task.due_date < today}
+            conflicting={conflictingTaskIds.has(task.id)}
             onToggle={() => void toggleCompleted(task)}
             onEdit={() => openEdit(task)}
             onDelete={() => setPendingDelete(task)}
@@ -316,11 +333,13 @@ export default function PlannerPage() {
   </>
 }
 
-function PlannerTaskCard({ task, goal, timezone, locale, onToggle, onEdit, onDelete, onDragStart, onDragEnd }: {
+function PlannerTaskCard({ task, goal, timezone, locale, overdue, conflicting, onToggle, onEdit, onDelete, onDragStart, onDragEnd }: {
   task: PlannerTask
   goal: Goal | null
   timezone: string
   locale: string
+  overdue: boolean
+  conflicting: boolean
   onToggle: () => void
   onEdit: () => void
   onDelete: () => void
@@ -332,7 +351,7 @@ function PlannerTaskCard({ task, goal, timezone, locale, onToggle, onEdit, onDel
   return <div className="planner-task-drag" draggable onDragStart={onDragStart} onDragEnd={onDragEnd}>
   <Card className={`planner-task-card ${done ? 'is-completed' : ''}`}>
     <button className="planner-task-check" type="button" onClick={onToggle} aria-label={done ? `Вернуть задачу «${task.title}»` : `Отметить задачу «${task.title}» выполненной`}>{done ? <Check size={17} /> : <Circle size={17} />}</button>
-    <div className="planner-task-copy"><div className="planner-task-title-row"><h3>{task.title}</h3>{time && <span className="planner-task-time"><Clock3 size={13} />{time}</span>}</div>{task.description && <p>{task.description}</p>}{goal && <span className="planner-task-goal"><Link2 size={12} />{goal.title}</span>}</div>
+    <div className="planner-task-copy"><div className="planner-task-title-row"><h3>{task.title}</h3>{time && <span className="planner-task-time"><Clock3 size={13} />{time}</span>}</div>{(overdue || conflicting) && <div className="planner-task-flags">{overdue && <span className="planner-flag is-overdue">Просрочена</span>}{conflicting && <span className="planner-flag is-conflict">Пересечение по времени</span>}</div>}{task.description && <p>{task.description}</p>}{goal && <span className="planner-task-goal"><Link2 size={12} />{goal.title}</span>}</div>
     <div className="planner-task-actions"><Button variant="ghost" onClick={onEdit} aria-label={`Изменить задачу «${task.title}»`}><Pencil size={15} /></Button><Button variant="ghost" className="goal-delete-button" onClick={onDelete} aria-label={`Удалить задачу «${task.title}»`}><Trash2 size={15} /></Button></div>
   </Card>
   </div>
