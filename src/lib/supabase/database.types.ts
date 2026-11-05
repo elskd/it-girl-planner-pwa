@@ -42,6 +42,21 @@ export type KeyResultUpdate = {
   created_at: string
 }
 
+export type PlannerTask = {
+  id: string
+  user_id: string
+  title: string
+  description: string | null
+  goal_id: string | null
+  due_date: string
+  start_at: string | null
+  end_at: string | null
+  completed_at: string | null
+  sort_order: number
+  created_at: string
+  updated_at: string
+}
+
 type Profile = {
   user_id: string
   display_name: string | null
@@ -104,6 +119,20 @@ export type Database = {
         }
         Update: Partial<Omit<Profile, 'user_id' | 'created_at' | 'updated_at'>> & {
           created_at?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      planner_tasks: {
+        Row: PlannerTask
+        Insert: Omit<PlannerTask, 'id' | 'completed_at' | 'created_at' | 'updated_at' | 'sort_order'> & {
+          id?: string
+          completed_at?: string | null
+          created_at?: string
+          updated_at?: string
+          sort_order?: number
+        }
+        Update: Partial<Omit<PlannerTask, 'id' | 'user_id' | 'created_at' | 'updated_at'>> & {
           updated_at?: string
         }
         Relationships: []
