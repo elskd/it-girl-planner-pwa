@@ -1,15 +1,18 @@
 import { useCallback, useEffect, useMemo, useState, type FormEvent } from 'react'
-import { Check, Circle, Clock3, Goal as GoalIcon, Pencil, Plus, Search, Trash2, Undo2 } from 'lucide-react'
+import { Check, ChevronDown, ChevronUp, Circle, Clock3, Goal as GoalIcon, History, Pencil, Plus, Search, Target, Trash2, Undo2 } from 'lucide-react'
 import { Badge, Button, Card, EmptyState, Input, Modal, Tabs } from '../components/ui'
 import { PageHeader } from '../components/PageHeader'
-import { createGoal, deleteGoal, fetchGoals, setGoalStatus, updateGoal, type GoalDraft } from '../lib/data/goals'
-import type { Goal, GoalStatus } from '../lib/supabase/database.types'
+import { addKeyResultUpdate, createGoal, createKeyResult, deleteGoal, deleteKeyResult, fetchGoals, fetchKeyResultUpdates, fetchKeyResults, setGoalStatus, updateGoal, updateKeyResult, type GoalDraft, type KeyResultDraft } from '../lib/data/goals'
+import type { Goal, GoalStatus, KeyResult, KeyResultUpdate } from '../lib/supabase/database.types'
 import { useAuth } from '../lib/auth/AuthContext'
 
 type StatusFilter = 'all' | GoalStatus
 type GoalFormState = { title: string; description: string; category: string; startDate: string; dueDate: string }
+type ResultFormState = { title: string; metricType: KeyResult['metric_type']; direction: 'increase' | 'decrease'; startValue: string; targetValue: string; unit: string; weight: string }
+type UpdateFormState = { numericValue: string; booleanValue: boolean; note: string }
 
 const emptyForm: GoalFormState = { title: '', description: '', category: '', startDate: '', dueDate: '' }
+const emptyResultForm: ResultFormState = { title: '', metricType: 'numeric', direction: 'increase', startValue: '0', targetValue: '1', unit: '', weight: '1' }
 
 function formFromGoal(goal: Goal): GoalFormState {
   return {
@@ -49,6 +52,8 @@ function errorMessage(error: unknown) {
 export default function GoalsPage() {
   const { user } = useAuth()
   const [goals, setGoals] = useState<Goal[]>([])
+  const [keyResults, setKeyResults] = useState<KeyResult[]>([])
+  const [keyResultUpdates, setKeyResultUpdates] = useState<KeyResultUpdate[]>([])
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [loadError, setLoadError] = useState('')
@@ -61,12 +66,24 @@ export default function GoalsPage() {
   const [form, setForm] = useState<GoalFormState>(emptyForm)
   const [formError, setFormError] = useState('')
   const [pendingDelete, setPendingDelete] = useState<Goal | null>(null)
+  const [selectedGoal, setSelectedGoal] = useState<Goal | null>(null)
+  const [editingResult, setEditingResult] = useState<KeyResult | null>(null)
+  const [resultFormOpen, setResultFormOpen] = useState(false)
+  const [resultForm, setResultForm] = useState<ResultFormState>(emptyResultForm)
+  const [resultFormError, setResultFormError] = useState('')
+  const [pendingDeleteResult, setPendingDeleteResult] = useState<KeyResult | null>(null)
+  const [updatingResult, setUpdatingResult] = useState<KeyResult | null>(null)
+  const [updateForm, setUpdateForm] = useState<UpdateFormState>({ numericValue: '', booleanValue: false, note: '' })
+  const [updateFormError, setUpdateFormError] = useState('')
 
   const load = useCallback(async () => {
     setLoading(true)
     setLoadError('')
     try {
-      setGoals(await fetchGoals())
+      const [nextGoals, nextResults, nextUpdates] = await Promise.all([fetchGoals(), fetchKeyResults(), fetchKeyResultUpdates()])
+      setGoals(nextGoals)
+      setKeyResults(nextResults)
+      setKeyResultUpdates(nextUpdates)
     } catch (error) {
       setLoadError(errorMessage(error))
     } finally {
@@ -169,6 +186,123 @@ export default function GoalsPage() {
     }
   }
 
+  const openCreateResult = (goal: Goal) => {
+    setSelectedGoal(goal)
+    setEditingResult(null)
+    setResultForm(emptyResultForm)
+    setResultFormError('')
+    setActionError('')
+    setResultFormOpen(true)
+  }
+
+  const openEditResult = (goal: Goal, result: KeyResult) => {
+    setSelectedGoal(goal)
+    setEditingResult(result)
+    setResultForm({
+      title: result.title,
+      metricType: result.metric_type,
+      direction: result.direction ?? 'increase',
+      startValue: result.start_value?.toString() ?? '0',
+      targetValue: result.target_value?.toString() ?? '1',
+      unit: result.unit ?? '',
+      weight: result.weight.toString(),
+    })
+    setResultFormError('')
+    setResultFormOpen(true)
+  }
+
+  const saveResult = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (!user || !selectedGoal) return
+    const startValue = Number(resultForm.startValue)
+    const targetValue = Number(resultForm.targetValue)
+    const weight = Number(resultForm.weight)
+    if (resultForm.metricType === 'numeric' && (!Number.isFinite(startValue) || !Number.isFinite(targetValue) || startValue === targetValue)) {
+      setResultFormError('Начальное и целевое значения должны быть числами и отличаться друг от друга.')
+      return
+    }
+    if (!Number.isFinite(weight) || weight <= 0 || weight > 1000) {
+      setResultFormError('Вес должен быть больше 0 и не более 1000.')
+      return
+    }
+    const draft: KeyResultDraft = {
+      title: resultForm.title.trim(),
+      metric_type: resultForm.metricType,
+      direction: resultForm.metricType === 'numeric' ? resultForm.direction : null,
+      start_value: resultForm.metricType === 'numeric' ? startValue : null,
+      target_value: resultForm.metricType === 'numeric' ? targetValue : null,
+      unit: resultForm.metricType === 'numeric' ? resultForm.unit.trim() || null : null,
+      weight,
+    }
+    setSaving(true)
+    setResultFormError('')
+    try {
+      const result = editingResult
+        ? await updateKeyResult(editingResult.id, draft)
+        : await createKeyResult(user.id, selectedGoal.id, draft)
+      setKeyResults(current => editingResult
+        ? current.map(item => item.id === result.id ? result : item)
+        : [...current, result])
+      setResultFormOpen(false)
+    } catch (error) {
+      setResultFormError(errorMessage(error))
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  const handleDeleteResult = async () => {
+    if (!pendingDeleteResult) return
+    setSaving(true)
+    setActionError('')
+    try {
+      await deleteKeyResult(pendingDeleteResult.id)
+      setKeyResults(current => current.filter(item => item.id !== pendingDeleteResult.id))
+      setKeyResultUpdates(current => current.filter(item => item.key_result_id !== pendingDeleteResult.id))
+      setPendingDeleteResult(null)
+    } catch (error) {
+      setActionError(errorMessage(error))
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  const openUpdate = (result: KeyResult) => {
+    const latest = keyResultUpdates.find(update => update.key_result_id === result.id)
+    setUpdatingResult(result)
+    setUpdateForm({
+      numericValue: (latest?.numeric_value ?? result.start_value ?? 0).toString(),
+      booleanValue: latest?.boolean_value ?? false,
+      note: '',
+    })
+    setUpdateFormError('')
+  }
+
+  const saveUpdate = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (!user || !updatingResult) return
+    const numericValue = Number(updateForm.numericValue)
+    if (updatingResult.metric_type === 'numeric' && !Number.isFinite(numericValue)) {
+      setUpdateFormError('Введи корректное число.')
+      return
+    }
+    setSaving(true)
+    setUpdateFormError('')
+    try {
+      const update = await addKeyResultUpdate(user.id, updatingResult.id, {
+        numeric_value: updatingResult.metric_type === 'numeric' ? numericValue : null,
+        boolean_value: updatingResult.metric_type === 'boolean' ? updateForm.booleanValue : null,
+        note: updateForm.note.trim() || null,
+      })
+      setKeyResultUpdates(current => [update, ...current])
+      setUpdatingResult(null)
+    } catch (error) {
+      setUpdateFormError(errorMessage(error))
+    } finally {
+      setSaving(false)
+    }
+  }
+
   return <>
     <PageHeader
       eyebrow="ТВОИ НАМЕРЕНИЯ"
@@ -215,7 +349,19 @@ export default function GoalsPage() {
       </EmptyState>
       {goals.length === 0 && <Button onClick={openCreate}><Plus size={16} /> Добавить цель</Button>}
     </Card> : <div className="goal-list" aria-live="polite">
-      {visibleGoals.map(goal => <GoalCard key={goal.id} goal={goal} onEdit={() => openEdit(goal)} onDelete={() => setPendingDelete(goal)} onToggleStatus={() => void handleStatus(goal)} />)}
+      {visibleGoals.map(goal => <GoalCard
+        key={goal.id}
+        goal={goal}
+        results={keyResults.filter(result => result.goal_id === goal.id)}
+        updates={keyResultUpdates}
+        onEdit={() => openEdit(goal)}
+        onDelete={() => setPendingDelete(goal)}
+        onToggleStatus={() => void handleStatus(goal)}
+        onAddResult={() => openCreateResult(goal)}
+        onEditResult={result => openEditResult(goal, result)}
+        onDeleteResult={setPendingDeleteResult}
+        onAddUpdate={openUpdate}
+      />)}
     </div>}
 
     <Modal open={formOpen} title={editingGoal ? 'Редактировать цель' : 'Новая цель'} onClose={closeForm}>
@@ -239,11 +385,54 @@ export default function GoalsPage() {
         <div className="goal-form-actions"><Button variant="secondary" disabled={saving} onClick={() => setPendingDelete(null)}>Оставить</Button><Button className="button-danger" disabled={saving} onClick={() => void handleDelete()}>{saving ? 'Удаляю…' : 'Удалить цель'}</Button></div>
       </div>
     </Modal>
+
+    <Modal open={resultFormOpen} title={editingResult ? 'Редактировать результат' : 'Новый Key Result'} onClose={() => { if (!saving) setResultFormOpen(false) }}>
+      <form className="goal-form" onSubmit={event => void saveResult(event)}>
+        <label className="goal-field"><span>Название результата <b aria-hidden="true">*</b></span><Input autoFocus maxLength={160} required value={resultForm.title} onChange={event => setResultForm(current => ({ ...current, title: event.target.value }))} placeholder="Как поймёшь, что продвинулась?" /></label>
+        <label className="goal-field"><span>Тип результата</span><select className="input" value={resultForm.metricType} onChange={event => setResultForm(current => ({ ...current, metricType: event.target.value as KeyResult['metric_type'] }))}><option value="numeric">Измеримый результат</option><option value="boolean">Да / нет</option></select></label>
+        {resultForm.metricType === 'numeric' && <>
+          <label className="goal-field"><span>Направление</span><select className="input" value={resultForm.direction} onChange={event => setResultForm(current => ({ ...current, direction: event.target.value as ResultFormState['direction'] }))}><option value="increase">Увеличить</option><option value="decrease">Уменьшить</option></select></label>
+          <div className="goal-date-fields"><label className="goal-field"><span>Сейчас</span><Input type="number" step="any" required value={resultForm.startValue} onChange={event => setResultForm(current => ({ ...current, startValue: event.target.value }))} /></label><label className="goal-field"><span>Цель</span><Input type="number" step="any" required value={resultForm.targetValue} onChange={event => setResultForm(current => ({ ...current, targetValue: event.target.value }))} /></label></div>
+          <label className="goal-field"><span>Единица измерения</span><Input maxLength={30} value={resultForm.unit} onChange={event => setResultForm(current => ({ ...current, unit: event.target.value }))} placeholder="кг, страниц, ₽, часов" /></label>
+        </>}
+        <label className="goal-field"><span>Вес в прогрессе цели</span><Input type="number" min="0.01" max="1000" step="any" required value={resultForm.weight} onChange={event => setResultForm(current => ({ ...current, weight: event.target.value }))} /><small>Чем выше вес, тем сильнее этот результат влияет на общий процент.</small></label>
+        {resultFormError && <div className="goals-error" role="alert">{resultFormError}</div>}
+        <div className="goal-form-actions"><Button type="button" variant="secondary" disabled={saving} onClick={() => setResultFormOpen(false)}>Отмена</Button><Button type="submit" disabled={saving}>{saving ? 'Сохраняю…' : 'Сохранить результат'}</Button></div>
+      </form>
+    </Modal>
+
+    <Modal open={Boolean(updatingResult)} title="Отметить прогресс" onClose={() => { if (!saving) setUpdatingResult(null) }}>
+      <form className="goal-form" onSubmit={event => void saveUpdate(event)}>
+        <p className="result-update-title">{updatingResult?.title}</p>
+        {updatingResult?.metric_type === 'numeric'
+          ? <label className="goal-field"><span>Текущее значение{updatingResult.unit && ` (${updatingResult.unit})`}</span><Input autoFocus type="number" step="any" required value={updateForm.numericValue} onChange={event => setUpdateForm(current => ({ ...current, numericValue: event.target.value }))} /></label>
+          : <label className="result-check-field"><input type="checkbox" checked={updateForm.booleanValue} onChange={event => setUpdateForm(current => ({ ...current, booleanValue: event.target.checked }))} /><span>Результат выполнен</span></label>}
+        <label className="goal-field"><span>Заметка</span><textarea className="input goal-textarea" maxLength={1000} rows={3} value={updateForm.note} onChange={event => setUpdateForm(current => ({ ...current, note: event.target.value }))} placeholder="Что изменилось?" /></label>
+        {updateFormError && <div className="goals-error" role="alert">{updateFormError}</div>}
+        <div className="goal-form-actions"><Button type="button" variant="secondary" disabled={saving} onClick={() => setUpdatingResult(null)}>Отмена</Button><Button type="submit" disabled={saving}>{saving ? 'Сохраняю…' : 'Добавить отметку'}</Button></div>
+      </form>
+    </Modal>
+
+    <Modal open={Boolean(pendingDeleteResult)} title="Удалить Key Result?" onClose={() => { if (!saving) setPendingDeleteResult(null) }}>
+      <div className="goal-delete-copy"><p>«{pendingDeleteResult?.title}» и его история отметок будут удалены. Общий прогресс цели пересчитается.</p>{actionError && <div className="goals-error" role="alert">{actionError}</div>}<div className="goal-form-actions"><Button variant="secondary" disabled={saving} onClick={() => setPendingDeleteResult(null)}>Оставить</Button><Button className="button-danger" disabled={saving} onClick={() => void handleDeleteResult()}>{saving ? 'Удаляю…' : 'Удалить результат'}</Button></div></div>
+    </Modal>
   </>
 }
 
-function GoalCard({ goal, onEdit, onDelete, onToggleStatus }: { goal: Goal; onEdit: () => void; onDelete: () => void; onToggleStatus: () => void }) {
+function GoalCard({ goal, results, updates, onEdit, onDelete, onToggleStatus, onAddResult, onEditResult, onDeleteResult, onAddUpdate }: {
+  goal: Goal
+  results: KeyResult[]
+  updates: KeyResultUpdate[]
+  onEdit: () => void
+  onDelete: () => void
+  onToggleStatus: () => void
+  onAddResult: () => void
+  onEditResult: (result: KeyResult) => void
+  onDeleteResult: (result: KeyResult) => void
+  onAddUpdate: (result: KeyResult) => void
+}) {
   const completed = goal.status === 'completed'
+  const progress = getGoalProgress(results, updates)
   return <Card className={`goal-card ${completed ? 'goal-card-completed' : ''}`}>
     <div className="goal-card-main">
       <div className="goal-card-heading">
@@ -259,6 +448,15 @@ function GoalCard({ goal, onEdit, onDelete, onToggleStatus }: { goal: Goal; onEd
         <Clock3 size={14} aria-hidden="true" />
         <span>{goal.start_date && `С ${dateLabel(goal.start_date)}`}{goal.start_date && goal.due_date && ' · '}{goal.due_date && `Срок ${dateLabel(goal.due_date)}`}</span>
       </div>}
+      <div className="goal-progress-summary">
+        <div><span>Прогресс цели</span><strong>{progress}%</strong></div>
+        <div className="goal-progress-track"><span style={{ width: `${progress}%` }} /></div>
+        <small>{results.length ? `${results.length} ${pluralize(results.length, 'результат', 'результата', 'результатов')}, расчёт по весам` : 'Добавь Key Results, чтобы считать прогресс'}</small>
+      </div>
+      <section className="key-results-section" aria-label={`Результаты цели ${goal.title}`}>
+        <div className="key-results-heading"><h3><Target size={16} /> Key Results</h3><Button variant="secondary" onClick={onAddResult}><Plus size={15} /> Добавить</Button></div>
+        {results.length === 0 ? <p className="key-results-empty">Разбей цель на измеримые шаги или добавь результат «да / нет».</p> : <div className="key-results-list">{results.map(result => <KeyResultCard key={result.id} result={result} updates={updates.filter(item => item.key_result_id === result.id)} onEdit={() => onEditResult(result)} onDelete={() => onDeleteResult(result)} onAddUpdate={() => onAddUpdate(result)} />)}</div>}
+      </section>
     </div>
     <div className="goal-actions">
       <Button variant="ghost" onClick={onToggleStatus} aria-label={completed ? `Вернуть цель «${goal.title}» в активные` : `Отметить цель «${goal.title}» выполненной`} title={completed ? 'Вернуть в активные' : 'Отметить выполненной'}>{completed ? <Undo2 size={16} /> : <Check size={16} />}<span>{completed ? 'Вернуть' : 'Выполнена'}</span></Button>
@@ -266,4 +464,54 @@ function GoalCard({ goal, onEdit, onDelete, onToggleStatus }: { goal: Goal; onEd
       <Button variant="ghost" className="goal-delete-button" onClick={onDelete} aria-label={`Удалить цель «${goal.title}»`} title="Удалить"><Trash2 size={16} /><span>Удалить</span></Button>
     </div>
   </Card>
+}
+
+function KeyResultCard({ result, updates, onEdit, onDelete, onAddUpdate }: { result: KeyResult; updates: KeyResultUpdate[]; onEdit: () => void; onDelete: () => void; onAddUpdate: () => void }) {
+  const [historyOpen, setHistoryOpen] = useState(false)
+  const latest = updates[0]
+  const currentNumeric = latest?.numeric_value ?? result.start_value ?? 0
+  const currentBoolean = latest?.boolean_value ?? false
+  const progress = getKeyResultProgress(result, latest)
+  const progressLabel = result.metric_type === 'numeric'
+    ? `${formatNumber(currentNumeric)}${result.unit ? ` ${result.unit}` : ''} из ${formatNumber(result.target_value ?? 0)}${result.unit ? ` ${result.unit}` : ''}`
+    : currentBoolean ? 'Выполнено' : 'Не выполнено'
+  return <article className="key-result-card">
+    <div className="key-result-top"><div><h4>{result.title}</h4><span className="key-result-value">{progressLabel}</span></div><Badge>{`Вес ${formatNumber(result.weight)}`}</Badge></div>
+    <div className="goal-progress-track key-result-progress-track"><span style={{ width: `${progress}%` }} /></div>
+    <div className="key-result-meta"><span>{result.metric_type === 'boolean' ? 'Да / нет' : result.direction === 'decrease' ? 'Цель — уменьшить' : 'Цель — увеличить'}</span><strong>{progress}%</strong></div>
+    <div className="key-result-actions"><Button variant="ghost" onClick={onAddUpdate}><Plus size={14} /> Отметить</Button><Button variant="ghost" onClick={() => setHistoryOpen(open => !open)} aria-expanded={historyOpen}>{historyOpen ? <ChevronUp size={14} /> : <History size={14} />} История {historyOpen ? <ChevronUp size={13} /> : <ChevronDown size={13} />}</Button><Button variant="ghost" onClick={onEdit} aria-label={`Изменить ${result.title}`}><Pencil size={14} /> Изменить</Button><Button variant="ghost" className="goal-delete-button" onClick={onDelete} aria-label={`Удалить ${result.title}`}><Trash2 size={14} /> Удалить</Button></div>
+    {historyOpen && <div className="key-result-history"><h5>История отметок</h5>{updates.length === 0 ? <p>Отметок пока нет.</p> : updates.slice(0, 5).map(update => <div className="key-result-history-row" key={update.id}><time>{new Intl.DateTimeFormat('ru-RU', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }).format(new Date(update.recorded_at))}</time><span>{update.numeric_value !== null ? `${formatNumber(update.numeric_value)}${result.unit ? ` ${result.unit}` : ''}` : update.boolean_value ? 'Выполнено' : 'Не выполнено'}</span>{update.note && <small>{update.note}</small>}</div>)}</div>}
+  </article>
+}
+
+function getKeyResultProgress(result: KeyResult, latest?: KeyResultUpdate) {
+  if (result.metric_type === 'boolean') return latest?.boolean_value ? 100 : 0
+  const start = result.start_value ?? 0
+  const target = result.target_value ?? 0
+  const current = latest?.numeric_value ?? start
+  const fraction = result.direction === 'decrease'
+    ? (start - current) / (start - target)
+    : (current - start) / (target - start)
+  return Math.round(Math.max(0, Math.min(1, fraction)) * 100)
+}
+
+function getGoalProgress(results: KeyResult[], updates: KeyResultUpdate[]) {
+  if (!results.length) return 0
+  const totalWeight = results.reduce((sum, result) => sum + result.weight, 0)
+  if (!totalWeight) return 0
+  const weighted = results.reduce((sum, result) => {
+    const latest = updates.find(update => update.key_result_id === result.id)
+    return sum + getKeyResultProgress(result, latest) * result.weight
+  }, 0)
+  return Math.round(weighted / totalWeight)
+}
+
+function formatNumber(value: number) {
+  return new Intl.NumberFormat('ru-RU', { maximumFractionDigits: 2 }).format(value)
+}
+
+function pluralize(count: number, one: string, few: string, many: string) {
+  const mod10 = count % 10
+  const mod100 = count % 100
+  return mod10 === 1 && mod100 !== 11 ? one : mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14) ? few : many
 }

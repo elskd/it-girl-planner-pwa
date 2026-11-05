@@ -15,6 +15,33 @@ export type Goal = {
   updated_at: string
 }
 
+export type KeyResult = {
+  id: string
+  user_id: string
+  goal_id: string
+  title: string
+  metric_type: 'numeric' | 'boolean'
+  direction: 'increase' | 'decrease' | null
+  start_value: number | null
+  target_value: number | null
+  unit: string | null
+  weight: number
+  sort_order: number
+  created_at: string
+  updated_at: string
+}
+
+export type KeyResultUpdate = {
+  id: string
+  user_id: string
+  key_result_id: string
+  numeric_value: number | null
+  boolean_value: boolean | null
+  note: string | null
+  recorded_at: string
+  created_at: string
+}
+
 type Profile = {
   user_id: string
   display_name: string | null
@@ -43,6 +70,30 @@ export type Database = {
           created_at?: string
           updated_at?: string
         }
+        Relationships: []
+      }
+      key_results: {
+        Row: KeyResult
+        Insert: Omit<KeyResult, 'id' | 'created_at' | 'updated_at' | 'sort_order' | 'weight'> & {
+          id?: string
+          created_at?: string
+          updated_at?: string
+          sort_order?: number
+          weight?: number
+        }
+        Update: Partial<Omit<KeyResult, 'id' | 'user_id' | 'goal_id' | 'created_at' | 'updated_at'>> & {
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      key_result_updates: {
+        Row: KeyResultUpdate
+        Insert: Omit<KeyResultUpdate, 'id' | 'created_at' | 'recorded_at'> & {
+          id?: string
+          created_at?: string
+          recorded_at?: string
+        }
+        Update: never
         Relationships: []
       }
       profiles: {

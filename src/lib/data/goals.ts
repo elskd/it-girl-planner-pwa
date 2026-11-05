@@ -1,5 +1,5 @@
 import { supabase } from '../supabase/client'
-import type { Goal, GoalStatus } from '../supabase/database.types'
+import type { Goal, GoalStatus, KeyResult, KeyResultUpdate } from '../supabase/database.types'
 
 export type GoalDraft = {
   title: string
@@ -7,6 +7,16 @@ export type GoalDraft = {
   category: string | null
   start_date: string | null
   due_date: string | null
+}
+
+export type KeyResultDraft = {
+  title: string
+  metric_type: KeyResult['metric_type']
+  direction: KeyResult['direction']
+  start_value: number | null
+  target_value: number | null
+  unit: string | null
+  weight: number
 }
 
 function client() {
@@ -23,6 +33,76 @@ export async function fetchGoals(): Promise<Goal[]> {
 
   if (error) throw error
   return data
+}
+
+export async function fetchKeyResults(): Promise<KeyResult[]> {
+  const { data, error } = await client()
+    .from('key_results')
+    .select('*')
+    .order('sort_order', { ascending: true })
+    .order('created_at', { ascending: true })
+
+  if (error) throw error
+  return data.map(row => ({
+    ...row,
+    start_value: row.start_value === null ? null : Number(row.start_value),
+    target_value: row.target_value === null ? null : Number(row.target_value),
+    weight: Number(row.weight),
+  }))
+}
+
+export async function fetchKeyResultUpdates(): Promise<KeyResultUpdate[]> {
+  const { data, error } = await client()
+    .from('key_result_updates')
+    .select('*')
+    .order('recorded_at', { ascending: false })
+    .order('created_at', { ascending: false })
+
+  if (error) throw error
+  return data.map(row => ({
+    ...row,
+    numeric_value: row.numeric_value === null ? null : Number(row.numeric_value),
+  }))
+}
+
+export async function createKeyResult(userId: string, goalId: string, draft: KeyResultDraft): Promise<KeyResult> {
+  const { data, error } = await client()
+    .from('key_results')
+    .insert({ ...draft, user_id: userId, goal_id: goalId })
+    .select('*')
+    .single()
+  if (error) throw error
+  return { ...data, start_value: data.start_value === null ? null : Number(data.start_value), target_value: data.target_value === null ? null : Number(data.target_value), weight: Number(data.weight) }
+}
+
+export async function updateKeyResult(id: string, draft: KeyResultDraft): Promise<KeyResult> {
+  const { data, error } = await client()
+    .from('key_results')
+    .update(draft)
+    .eq('id', id)
+    .select('*')
+    .single()
+  if (error) throw error
+  return { ...data, start_value: data.start_value === null ? null : Number(data.start_value), target_value: data.target_value === null ? null : Number(data.target_value), weight: Number(data.weight) }
+}
+
+export async function deleteKeyResult(id: string): Promise<void> {
+  const { error } = await client().from('key_results').delete().eq('id', id)
+  if (error) throw error
+}
+
+export async function addKeyResultUpdate(
+  userId: string,
+  keyResultId: string,
+  value: { numeric_value: number | null; boolean_value: boolean | null; note: string | null },
+): Promise<KeyResultUpdate> {
+  const { data, error } = await client()
+    .from('key_result_updates')
+    .insert({ ...value, user_id: userId, key_result_id: keyResultId })
+    .select('*')
+    .single()
+  if (error) throw error
+  return { ...data, numeric_value: data.numeric_value === null ? null : Number(data.numeric_value) }
 }
 
 export async function createGoal(userId: string, draft: GoalDraft): Promise<Goal> {
