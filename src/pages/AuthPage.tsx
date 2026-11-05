@@ -1,7 +1,101 @@
-YªçŠx-®éÜj×¢ëiºÚ+Š§j[h‘éÜ¢éí×~ºN‹Z–‹­¦ëeŠw¬Õ¥µÁ½ÉÐìÕÍ•MÑ…Ñ”°ÑåÁ”½ÉµÙ•¹Ðô™É½´€É•…Ðœ)¥µÁ½ÉÐìÉÉ½Ý1•™Ð°!•…ÉÐ°1½­-•å¡½±”°5…¥°°MÁ…É­±•Ìô™É½´€±Õ¥‘”µÉ•…Ðœ)¥µÁ½ÉÐìÕÍ•9…Ù¥…Ñ”ô™É½´€É•…ÐµÉ½ÕÑ•Èµ‘½´œ)¥µÁ½ÉÐì	…‘”°	ÕÑÑ½¸°…Éô™É½´€œ¸¸½½µÁ½¹•¹ÑÌ½Õ¤œ)¥µÁ½ÉÐìÕÍ•ÕÑ ô™É½´€œ¸¸½±¥ˆ½…ÕÑ ½ÕÑ¡½¹Ñ•áÐœ)¥µÁ½ÉÐìÍÕÁ…‰…Í”ô™É½´€œ¸¸½±¥ˆ½ÍÕÁ…‰…Í”½±¥•¹Ðœ()ÑåÁ”ÕÑ¡5½‘”€ô€Í¥¸µ¥¸œð€Í¥¸µÕÀœð€É•½Ù•Èœð€É•Í•Ðœð€•áÁ¥É•œð€Í•ÑÕÀœ)ÑåÁ”9½Ñ¥”€ôìÑåÁ”è€ÍÕ•ÍÌœð€•ÉÉ½ÈœìÑ•áÐèÍÑÉ¥¹œô()™Õ¹Ñ¥½¸É•‘¥É•ÑUÉ°¡É½ÕÑ”èÍÑÉ¥¹œ¤ì(€½¹ÍÐÕÉ°€ô¹•ÜUI0¡Ý¥¹‘½Ü¹±½…Ñ¥½¸¹Á…Ñ¡¹…µ”°Ý¥¹‘½Ü¹±½…Ñ¥½¸¹½É¥¥¸¤(€ÕÉ°¹¡…Í €ô€¼‘íÉ½ÕÑ”¹É•Á±…” ½yp¼¬¼°€œœ¥õ€(€É•ÑÕÉ¸ÕÉ°¹Ñ½MÑÉ¥¹œ ¤)ô()™Õ¹Ñ¥½¸¡Õµ…¹¥é•ÉÉ½È¡µ•ÍÍ…”èÍÑÉ¥¹œ¤ì(€½¹ÍÐÑ•áÐ€ôµ•ÍÍ…”¹Ñ½1½Ý•É…Í” ¤(€¥˜€¡Ñ•áÐ¹¥¹±Õ‘•Ì ¥¹Ù…±¥±½¥¸É•‘•¹Ñ¥…±Ìœ¤¤É•ÑÕÉ¸€ŸBFBûBËB×FF0ƒBÃBÓFB×FƒBÿBûFFF,ƒBàƒBÿBÃFBûBïF0¸œ(€¥˜€¡Ñ•áÐ¹¥¹±Õ‘•Ì •µ…¥°¹½Ð½¹™¥Éµ•œ¤¤É•ÑÕÉ¸€ŸB‡B÷BÃFBÃBïBÀƒBÿBûBÓFBËB×FBÓBàƒBÃBÓFB×FƒBÿBûFFF,ƒBÿBøƒFFF/BïBëBÔƒBãBÜƒBÿBãFF3BóBÀ¸œ(€¥˜€¡Ñ•áÐ¹¥¹±Õ‘•Ì …±É•…‘äÉ•¥ÍÑ•É•œ¤ñðÑ•áÐ¹¥¹±Õ‘•Ì …±É•…‘ä‰••¸É•¥ÍÑ•É•œ¤¤É•ÑÕÉ¸€ŸBCBëBëBÃFB÷FƒFƒF7FBûBäƒBÿBûFFBûBäƒFBÛBÔƒB×FFF0¸ƒBBûBÿFBûBÇFBäƒBËBûBçFBà¸œ(€¥˜€¡Ñ•áÐ¹¥¹±Õ‘•Ì Á…ÍÍÝ½ÉÍ¡½Õ±‰”…Ð±•…ÍÐœ¤¤É•ÑÕÉ¸€ŸBBÃFBûBïF0ƒBÓBûBïBÛB×BôƒFBûBÓB×FBÛBÃFF0ƒB÷BÔƒBóB×B÷B×BÔ€àƒFBãBóBËBûBïBûBÈ¸œ(€¥˜€¡Ñ•áÐ¹¥¹±Õ‘•Ì É…Ñ”±¥µ¥Ðœ¤ñðÑ•áÐ¹¥¹±Õ‘•Ì Ñ½¼µ…¹äÉ•ÅÕ•ÍÑÌœ¤¤É•ÑÕÉ¸€ŸB‡BïBãF#BëBûBðƒBóB÷BûBÏBøƒBÿBûBÿF/FBûBè¸ƒBBûBÓBûBÛBÓBàƒB÷B×BóB÷BûBÏBøƒBàƒBÿBûBÿFBûBÇFBäƒB×F'FDƒFBÃBÜ¸œ(€¥˜€¡Ñ•áÐ¹¥¹±Õ‘•Ì ¹•ÑÝ½É¬œ¤ñðÑ•áÐ¹¥¹±Õ‘•Ì ™•Ñ œ¤¤É•ÑÕÉ¸€ŸBwBÔƒFBÓBÃBïBûFF0ƒFBËF?BßBÃFF3FF<ƒFƒFB×FBËB×FBûBð¸ƒBFBûBËB×FF0ƒBÿBûBÓBëBïF;FB×B÷BãBÔƒBèƒBãB÷FB×FB÷B×FF¸œ(€É•ÑÕÉ¸µ•ÍÍ…”)ô()•áÁ½ÉÐ‘•™…Õ±Ð™Õ¹Ñ¥½¸ÕÑ¡A…”¡ìµ½‘”ôèìµ½‘”èÕÑ¡5½‘”ô¤ì(€½¹ÍÐ¹…Ù¥…Ñ”€ôÕÍ•9‡^º¶‰žËkºwµçB6öç7B²W'&÷"ÒÒv—B7W&6RæWF‚ç6–vä–åv—F…77v÷&B‡²VÖ–Ã¢VÖ–ÂçG&–Ò‚’Â77v÷&BÒ¢–b†W'&÷"’F‡&÷rW'&÷ ¢æf–vFR‚ròrÂ²&WÆ6S¢G'VRÒ¢ÒVÇ6R–b†ÖöFRÓÓÒw6–vâ×Wr’°¢–b‡77v÷&BÓÒ6öæf—&Õ77v÷&B’°¢6WDæ÷F–6R‡²G—S¢vW'&÷"rÂFW‡C¢}	ýí½‚ÝRí-ýMí"ârÒ¢&WGW&à¢Ð¢6öç7B²FFÂW'&÷"ÒÒv—B7W&6RæWF‚ç6–våW‡°¢VÖ–Ã¢VÖ–ÂçG&–Ò‚’À¢77v÷&BÀ¢÷F–öç3¢²VÖ–Å&VF—&V7EFó¢&VF—&V7EW&Â‚vWF‚r’ÒÀ¢Ò¢–b†W'&÷"’F‡&÷rW'&÷ ¢–b†FFç6W76–öâ’æf–vFR‚ròrÂ²&WÆ6S¢G'VRÒ¢VÇ6R6WDæ÷F–6R‡²G—S¢w7V66W72rÂFW‡C¢}	ýí-]Âýí}-2‚ý]]M‚ýâ½½­RM½òýíM--]mM]Ýò­­=Ý-ârÒ¢ÒVÇ6R–b†ÖöFRÓÓÒw&V6÷fW"r’°¢6öç7B²W'&÷"ÒÒv—B7W&6RæWF‚ç&W6WE77v÷&Df÷$VÖ–Â†VÖ–ÂçG&–Ò‚’Â°¢&VF—&V7EFó¢&VF—&V7EW&Â‚vWF‚÷&W6WB×77v÷&Br’À¢Ò¢–b†W'&÷"’F‡&÷rW'&÷ ¢6WDæ÷F–6R‡²G—S¢w7V66W72rÂFW‡C¢}	]½‚­­=Ý"-­ÂM]íÂ=]--=]"ÂýÍÍâM½òíýí½ò=mRí-ý-½]ÝâârÒ¢ÒVÇ6R–b†ÖöFRÓÓÒw&W6WBr’°¢–b‡77v÷&BÓÒ6öæf—&Õ77v÷&B’°¢6WDæ÷F–6R‡²G—S¢vW'&÷"rÂFW‡C¢}	ýí½‚ÝRí-ýMí"ârÒ¢&WGW&à¢Ð¢6öç7B²W'&÷"ÒÒv—B7W&6RæWF‚çWFFUW6W"‡²77v÷&BÒ¢–b†W'&÷"’F‡&÷rW'&÷ ¢6WDæ÷F–6R‡²G—S¢w7V66W72rÂFW‡C¢}	ýí½ÂíÝí-½Òâ
--]ý]ÂÍímÝâýíMí½m-ÂârÒ¢v–æF÷rç6WEF–ÖV÷WB‚‚’Óâæf–vFR‚ròrÂ²&WÆ6S¢G'VRÒ’Â“¢Ð¢Ò6F6‚†W'&÷"’°¢6öç7BÖW76vRÒW'&÷"–ç7Fæ6VöbW'&÷"òUš®x§‚ÚîÆ­yÚ.¶›­¢¸ Šv¥¶‰Ê.žÝwë¤èµ©hºÚn¶X§zÍ\œ›Ü‹›Y\ÜØYÙHˆ	ô'ô/´/ô`4/´,t`ô.H4-tbtdH4`4,4-È4aô`ô`´c4/ô/´-ô-´-K‰ÂˆÙ]›ÝXÙJÈ\Nˆ	Ù\œ›Ü‰Ë^ˆ[X[š^™Q\œ›ÜŠY\ÜØYÙJHJBˆHš[˜[HÂˆÙ]\ÞJ˜[ÙJBˆBˆB‚ˆÛÛœÝ]HH[ÙHOOH	ÜÚYÛ‹]\	ÈÈ	ô(t/´-ô-4,4.H4,4.´.´,4`ô/t`‰Èˆ[ÙHOOH	Ü™XÛÝ™\‰ÈÈ	ô$´-t`4/tdt/4-4/´`t`´`ô/ÉÈˆ[ÙHOOH	Ü™\Ù]	ÈÈ	ô't/´,´bô.H4/ô,4`4/´.ôc	Èˆ[ÙHOOH	Ù^\™Y	ÈÈ	ô(t`tbô.ô.´,4/t-t-4-t.t`t`´,´.4`´-t.ôc4/t,	Èˆ	ô(H4,´/´-ô,´`4,4bt-t/t.4-t/	ÂˆÛÛœÝ\ØÜš\[ÛˆH[ÙHOOH	ÜÚYÛ‹]\	ÈÈ	ô(´,´/´dH4.ô.4aô/t/´-H4/ô`4/´`t`´`4,4/t`t`´,´/ˆ4-4.ôcÈ4a´-t.ô-t.H4.4/ô.ô,4/t/´,‹‰Èˆ[ÙHOOH	Ü™XÛÝ™\‰ÈÈ	ô'´`´/ô`4,4,´.4/4/ô.4`tc4/4/ˆ4`t/ˆ4`t`tbô.ô.´/´.H4-4.ôcÈ4`t,t`4/´`t,4/ô,4`4/´.ôcË‰Èˆ[ÙHOOH	Ü™\Ù]	ÈÈ	ô'ô`4.4-4`ô/4,4.H4/t/´,´bô.H4/ô,4`4/´.ôc4-4.ôcÈ4,4.´.´,4`ô/t`´,‰Èˆ[ÙHOOH	Ù^\™Y	ÈÈ	ô(t`tbô.ô.´,4`t,t`4/´`t,4/ô,4`4/´.ôcÈ4.4`t`´-t.´.ô,4.4.ô.4`ô-´-H4,tbô.ô,4.4`t/ô/´.ôc4-ô/´,´,4/t,ˆ4%ô,4/ô`4/´`t.4/t/´,´`ôc‹‰Èˆ	ô$´/´.t-4.4aô`´/´,tbÈ4/´`´.´`4bô`´c4`t,´/´.H4/ô.ô,4/t-t`‰Â‚ˆYˆ
-XÛY[™XYH[ÙHOOH	ÜÙ]\	ÊHÂˆ™]\›ˆXZ[ˆÛ\ÜÓ˜[YOH˜]]\ØÜ™Y[ˆØ\™Û\ÜÓ˜[YOH˜]]XØ\™œ˜[™Ï]ˆÛ\ÜÓ˜[YOH˜]]XÛÜH˜YÙHÛ™OH˜XØÙ[´'t$4(t(´(4'´&t&´$4$4&´&´$4(ô't(´$Ð˜YÙOO´'ô/´-4.´.ôc´aô,4-t/4/ô`4/´`t`´`4,4/t`t`´,´/ÚO´%4.ôcÈ4,´at/´-4,4-tbtdH4/t`ô-´/t/ˆ4-4/´,t,4,´.4`´cT“4.4/ô`ô,t.ô.4aô/tbô.H4.´.ôc´aÈ4/ô`4/´-t.´`´,Ý\X˜\ÙH4,ˆ4/´.´`4`ô-´-t/t.4-H4/ô`4.4.ô/´-´-t/t.4cËÜÙ]]ˆÛ\ÜÓ˜[YOH˜]][›ÝXÙH]][›ÝXÙKY\œ›Üˆˆ›ÛOHœÝ]\È´(t-t.´`4-t`´/tbô.H4.´.ôc´aÈ4,t,4-ôbÈ4-4,4/t/tbôaH4/t-H4/t`ô-´-t/H4.4/t-H4-4/´.ô-´-t/H4/ô/´/ô,4-4,4`´c4,ˆ4/ô`4.4.ô/´-´-t/t.4-KÙ]ÐØ\™ÛXZ[‚ˆB‚ˆYˆ
-[ÙHOOH	Ù^\™Y	ÊHÂˆ™]\›ˆXZ[ˆÛ\ÜÓ˜[YOH˜]]\ØÜ™Y[ˆØ\™Û\ÜÓ˜[YOH˜]]XØ\™œ˜[™Ï]ˆÛ\ÜÓ˜[YOH˜]]XÛÜH˜YÙHÛ™OH˜XØÙ[´$´'µë«h‘éì¶»§q«^te === 'recover' ? 'ÐžÑ‚Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÑŒ ÑÑÑ‹Ð»ÐºÑƒ' : 'Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ Ð¿Ð°Ñ€Ð¾Ð»ÑŒ'
+import { useState, type FormEvent } from 'react'
+import { ArrowLeft, Heart, LockKeyhole, Mail, Sparkles } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
+import { Badge, Button, Card } from '../components/ui'
+import { useAuth } from '../lib/auth/AuthContext'
+import { supabase } from '../lib/supabase/client'
+
+type AuthMode = 'sign-in' | 'sign-up' | 'recover' | 'reset' | 'expired' | 'setup'
+type Notice = { type: 'success' | 'error'; text: string }
+
+function redirectUrl(route: string) {
+  const url = new URL(window.location.pathname, window.location.origin)
+  url.hash = `/${route.replace(/^\/+/, '')}`
+  return url.toString()
+}
+
+function humanizeError(message: string) {
+  const text = message.toLowerCase()
+  if (text.includes('invalid login credentials')) return 'ÐŸÑ€Ð¾Ð²ÐµÑ€ÑŒ Ð°Ð´Ñ€ÐµÑ Ð¿Ð¾Ñ‡Ñ‚Ñ‹ Ð¸ Ð¿Ð°Ñ€Ð¾Ð»ÑŒ.'
+  if (text.includes('email not confirmed')) return 'Ð¡Ð½Ð°Ñ‡Ð°Ð»Ð° Ð¿Ð¾Ð´Ñ‚Ð²ÐµÑ€Ð´Ð¸ Ð°Ð´Ñ€ÐµÑ Ð¿Ð¾Ñ‡Ñ‚Ñ‹ Ð¿Ð¾ ÑÑÑ‹Ð»ÐºÐµ Ð¸Ð· Ð¿Ð¸ÑÑŒÐ¼Ð°.'
+  if (text.includes('already registered') || text.includes('already been registered')) return 'ÐÐºÐºÐ°ÑƒÐ½Ñ‚ Ñ ÑÑ‚Ð¾Ð¹ Ð¿Ð¾Ñ‡Ñ‚Ð¾Ð¹ ÑƒÐ¶Ðµ ÐµÑÑ‚ÑŒ. ÐŸÐ¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹ Ð²Ð¾Ð¹Ñ‚Ð¸.'
+  if (text.includes('password should be at least')) return 'ÐŸÐ°Ñ€Ð¾Ð»ÑŒ Ð´Ð¾Ð»Ð¶ÐµÐ½ ÑÐ¾Ð´ÐµÑ€Ð¶Ð°Ñ‚ÑŒ Ð½Ðµ Ð¼ÐµÐ½ÐµÐµ 8 ÑÐ¸Ð¼Ð²Ð¾Ð»Ð¾Ð².'
+  if (text.includes('rate limit') || text.includes('too many requests')) return 'Ð¡Ð»Ð¸ÑˆÐºÐ¾Ð¼ Ð¼Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð¿Ñ‹Ñ‚Ð¾Ðº. ÐŸÐ¾Ð´Ð¾Ð¶Ð´Ð¸ Ð½ÐµÐ¼Ð½Ð¾Ð³Ð¾ Ð¸ Ð¿Ð¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹ ÐµÑ‰Ñ‘ Ñ€Ð°Ð·.'
+  if (text.includes('network') || text.includes('fetch')) return 'ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ ÑÐ²ÑÐ·Ð°Ñ‚ÑŒÑÑ Ñ ÑÐµÑ€Ð²ÐµÑ€Ð¾Ð¼. ÐŸÑ€Ð¾Ð²ÐµÑ€ÑŒ Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ðµ Ðº Ð¸Ð½Ñ‚ÐµÑ€Ð½ÐµÑ‚Ñƒ.'
+  return message
+}
+
+export default function AuthPage({ mode }: { mode: AuthMode }) {
+  const navigate = useNavigate()
+  const { clientReady } = useAuth()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [busy, setBusy] = useState(false)
+  const [notice, setNotice] = useState<Notice | null>(null)
+
+  const submit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (!supabase) return
+    setBusy(true)
+    setNotice(null)
+
+    try {
+      if (mode === 'sign-in') {
+        const { error } = await supabase.auth.signInWithPassword({ email: email.trim(), password })
+        if (error) throw error
+        navigate('/', { replace: true })
+      } else if (mode === 'sign-up') {
+        if (password !== confirmPassword) {
+          setNotice({ type: 'error', text: 'ÐŸÐ°Ñ€Ð¾Ð»Ð¸ Ð½Ðµ ÑÐ¾Ð²Ð¿Ð°Ð´Ð°ÑŽÑ‚.' })
+          return
+        }
+        const { data, error } = await supabase.auth.signUp({
+          email: email.trim(),
+          password,
+          options: { emailRedirectTo: redirectUrl('auth') },
+        })
+        if (error) throw error
+        if (data.session) navigate('/', { replace: true })
+        else setNotice({ type: 'success', text: 'ÐŸÑ€Ð¾Ð²ÐµÑ€ÑŒ Ð¿Ð¾Ñ‡Ñ‚Ñƒ Ð¸ Ð¿ÐµÑ€ÐµÐ¹Ð´Ð¸ Ð¿Ð¾ ÑÑÑ‹Ð»ÐºÐµ Ð´Ð»Ñ Ð¿Ð¾Ð´Ñ‚Ð²ÐµÑ€Ð¶Ð´ÐµÐ½Ð¸Ñ Ð°ÐºÐºÐ°ÑƒÐ½Ñ‚Ð°.' })
+      } else if (mode === 'recover') {
+        const { error } = await supabase.auth.resetPasswordForEmail(email.trim(), {
+          redirectTo: redirectUrl('auth/reset-password'),
+        })
+        if (error) throw error
+        setNotice({ type: 'success', text: 'Ð•ÑÐ»Ð¸ Ð°ÐºÐºÐ°ÑƒÐ½Ñ‚ Ñ Ñ‚Ð°ÐºÐ¸Ð¼ Ð°Ð´Ñ€ÐµÑÐ¾Ð¼ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÐµÑ‚, Ð¿Ð¸ÑÑŒÐ¼Ð¾ Ð´Ð»Ñ ÑÐ±Ñ€Ð¾ÑÐ° Ð¿Ð°Ñ€Ð¾Ð»Ñ ÑƒÐ¶Ðµ Ð¾Ñ‚Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¾.' })
+      } else if (mode === 'reset') {
+        if (password !== confirmPassword) {
+          setNotice({ type: 'error', text: 'ÐŸÐ°Ñ€Ð¾Ð»Ð¸ Ð½Ðµ ÑÐ¾Ð²Ð¿Ð°Ð´Ð°ÑŽÑ‚.' })
+          return
+        }
+        const { error } = await supabase.auth.updateUser({ password })
+        if (error) throw error
+        setNotice({ type: 'success', text: 'ÐŸÐ°Ñ€Ð¾Ð»ÑŒ Ð¾Ð±Ð½Ð¾Ð²Ð»Ñ‘Ð½. Ð¢ÐµÐ¿ÐµÑ€ÑŒ Ð¼Ð¾Ð¶Ð½Ð¾ Ð¿Ñ€Ð¾Ð´Ð¾Ð»Ð¶Ð¸Ñ‚ÑŒ.' })
+        window.setTimeout(() => navigate('/', { replace: true }), 900)
+      }
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'ÐŸÐ¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹ ÐµÑ‰Ñ‘ Ñ€Ð°Ð· Ñ‡ÑƒÑ‚ÑŒ Ð¿Ð¾Ð·Ð¶Ðµ.'
+      setNotice({ type: 'error', text: humanizeError(message) })
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  const title = mode === 'sign-up' ? 'Ð¡Ð¾Ð·Ð´Ð°Ð¹ Ð°ÐºÐºÐ°ÑƒÐ½Ñ‚' : mode === 'recover' ? 'Ð’ÐµÑ€Ð½Ñ‘Ð¼ Ð´Ð¾ÑÑ‚ÑƒÐ¿' : mode === 'reset' ? 'ÐÐ¾Ð²Ñ‹Ð¹ Ð¿Ð°Ñ€Ð¾Ð»ÑŒ' : mode === 'expired' ? 'Ð¡ÑÑ‹Ð»ÐºÐ° Ð½ÐµÐ´ÐµÐ¹ÑÑ‚Ð²Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð°' : 'Ð¡ Ð²Ð¾Ð·Ð²Ñ€Ð°Ñ‰ÐµÐ½Ð¸ÐµÐ¼'
+  const description = mode === 'sign-up' ? 'Ð¢Ð²Ð¾Ñ‘ Ð»Ð¸Ñ‡Ð½Ð¾Ðµ Ð¿Ñ€Ð¾ÑÑ‚Ñ€Ð°Ð½ÑÑ‚Ð²Ð¾ Ð´Ð»Ñ Ñ†ÐµÐ»ÐµÐ¹ Ð¸ Ð¿Ð»Ð°Ð½Ð¾Ð².' : mode === 'recover' ? 'ÐžÑ‚Ð¿Ñ€Ð°Ð²Ð¸Ð¼ Ð¿Ð¸ÑÑŒÐ¼Ð¾ ÑÐ¾ ÑÑÑ‹Ð»ÐºÐ¾Ð¹ Ð´Ð»Ñ ÑÐ±Ñ€Ð¾ÑÐ° Ð¿Ð°Ñ€Ð¾Ð»Ñ.' : mode === 'reset' ? 'ÐŸÑ€Ð¸Ð´ÑƒÐ¼Ð°Ð¹ Ð½Ð¾Ð²Ñ‹Ð¹ Ð¿Ð°Ñ€Ð¾Ð»ÑŒ Ð´Ð»Ñ Ð°ÐºÐºÐ°ÑƒÐ½Ñ‚Ð°.' : mode === 'expired' ? 'Ð¡ÑÑ‹Ð»ÐºÐ° ÑÐ±Ñ€Ð¾ÑÐ° Ð¿Ð°Ñ€Ð¾Ð»Ñ Ð¸ÑÑ‚ÐµÐºÐ»Ð° Ð¸Ð»Ð¸ ÑƒÐ¶Ðµ Ð±Ñ‹Ð»Ð° Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ð½Ð°. Ð—Ð°Ð¿Ñ€Ð¾ÑÐ¸ Ð½Ð¾Ð²ÑƒÑŽ.' : 'Ð’Ð¾Ð¹Ð´Ð¸, Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚ÑŒ ÑÐ²Ð¾Ð¹ Ð¿Ð»Ð°Ð½ÐµÑ€.'
+
+  if (!clientReady || mode === 'setup') {
+    return <main className="auth-screen"><Card className="auth-card"><Brand /><div className="auth-copy"><Badge tone="accent">ÐÐÐ¡Ð¢Ð ÐžÐ™ÐšÐ ÐÐšÐšÐÐ£ÐÐ¢Ð</Badge><h1>ÐŸÐ¾Ð´ÐºÐ»ÑŽÑ‡Ð°ÐµÐ¼ Ð¿Ñ€Ð¾ÑÑ‚Ñ€Ð°Ð½ÑÑ‚Ð²Ð¾</h1><p>Ð”Ð»Ñ Ð²Ñ…Ð¾Ð´Ð° ÐµÑ‰Ñ‘ Ð½ÑƒÐ¶Ð½Ð¾ Ð´Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ URL Ð¸ Ð¿ÑƒÐ±Ð»Ð¸Ñ‡Ð½Ñ‹Ð¹ ÐºÐ»ÑŽÑ‡ Ð¿Ñ€Ð¾ÐµÐºÑ‚Ð° Supabase Ð² Ð¾ÐºÑ€ÑƒÐ¶ÐµÐ½Ð¸Ðµ Ð¿Ñ€Ð¸Ð»Ð¾Ð¶ÐµÐ½Ð¸Ñ.</p></div><div className="auth-notice auth-notice-error" role="status">Ð¡ÐµÐºÑ€ÐµÑ‚Ð½Ñ‹Ð¹ ÐºÐ»ÑŽÑ‡ Ð±Ð°Ð·Ñ‹ Ð´Ð°Ð½Ð½Ñ‹Ñ… Ð½Ðµ Ð½ÑƒÐ¶ÐµÐ½ Ð¸ Ð½Ðµ Ð´Ð¾Ð»Ð¶ÐµÐ½ Ð¿Ð¾Ð¿Ð°Ð´Ð°Ñ‚ÑŒ Ð² Ð¿Ñ€Ð¸Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ.</div></Card></main>
+  }
+
+  if (mode === 'expired') {
+    return <main className="auth-screen"><Card className="auth-card"><Brand /><div className="auth-copy"><Badge tone="accent">Ð’ÐžÐ¡Ð¡Ð¢ÐÐÐžÐ’Ð›Ð•ÐÐ˜Ð•</Badge><h1>{title}</h1><p>{description}</p></div><Button variant="secondary" onClick={() => navigate('/auth/recover')}><Mail size={16} /> Ð—Ð°Ð¿Ñ€Ð¾ÑÐ¸Ñ‚ÑŒ Ð½Ð¾Ð²ÑƒÑŽ ÑÑÑ‹Ð»ÐºÑƒ</Button></Card></main>
+  }
+
+  const needsPassword = mode === 'sign-in' || mode === 'sign-up' || mode === 'reset'
+  const showConfirm = mode === 'sign-up' || mode === 'reset'
+  const submitLabel = mode === 'sign-in' ? 'Ð’Ð¾Ð¹Ñ‚Ð¸' : mode === 'sign-up' ? 'Ð¡Ð¾Ð·Ð´Ð°Ñ‚ÑŒ Ð°ÐºÐºÐ°ÑƒÐ½Ñ‚' : mode === 'recover' ? 'ÐžÑ‚Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÑŒ ÑÑÑ‹Ð»ÐºÑƒ' : 'Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ Ð¿Ð°Ñ€Ð¾Ð»ÑŒ'
 
   return <main className="auth-screen"><Card className="auth-card">
     <Brand />
