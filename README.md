@@ -1,6 +1,6 @@
 # It Girl Planner
 
-Персональное адаптивное PWA на React, TypeScript и Vite. Сейчас подключается Supabase Auth: регистрация по почте и паролю, вход, выход, восстановление пароля и закрытый доступ к приложению. Цели, задачи и прогресс появятся в следующих этапах.
+Персональное адаптивное PWA на React, TypeScript и Vite. Подключена клиентская часть Supabase Auth: регистрация по почте и паролю, вход, выход, восстановление пароля и закрытый доступ к приложению. Цели, задачи и прогресс появятся в следующих этапах.
 
 ## Разработка
 
@@ -25,7 +25,7 @@ npm run preview
 
 Workflow `.github/workflows/deploy.yml` собирает проект при push в `main` и загружает `dist` в GitHub Pages. В **Settings → Secrets and variables → Actions → Variables** добавь `VITE_SUPABASE_URL` и `VITE_SUPABASE_PUBLISHABLE_KEY` для сборки опубликованного приложения.
 
-В Supabase Auth добавь адрес локальной разработки и Pages URL в список разрешённых редиректов. Публичный репозиторий: https://github.com/elskd/it-girl-planner-pwa. Приложение: https://elskd.github.io/it-girl-planner-pwa/ .
+В Supabase Auth → URL Configuration укажи **Site URL** `https://elskd.github.io/it-girl-planner-pwa/` и добавь в **Redirect URLs** `https://elskd.github.io/it-girl-planner-pwa/**`, `http://localhost:5173/**` и `http://127.0.0.1:5173/**`. Публичный репозиторий: https://github.com/elskd/it-girl-planner-pwa. Приложение: https://elskd.github.io/it-girl-planner-pwa/ .
 
 ## Структура
 
