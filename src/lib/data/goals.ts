@@ -5,8 +5,6 @@ export type GoalDraft = {
   title: string
   description: string | null
   category: string | null
-  start_date: string | null
-  due_date: string | null
 }
 
 export type KeyResultDraft = {
@@ -108,7 +106,7 @@ export async function addKeyResultUpdate(
 export async function createGoal(userId: string, draft: GoalDraft): Promise<Goal> {
   const { data, error } = await client()
     .from('goals')
-    .insert({ ...draft, user_id: userId })
+    .insert({ ...draft, start_date: null, due_date: null, user_id: userId })
     .select('*')
     .single()
 

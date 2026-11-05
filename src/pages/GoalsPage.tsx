@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState, type FormEvent } from 'react'
-import { Check, ChevronDown, ChevronUp, Circle, Clock3, Goal as GoalIcon, History, Pencil, Plus, Search, Target, Trash2, Undo2 } from 'lucide-react'
+import { Check, ChevronDown, ChevronUp, Circle, Goal as GoalIcon, History, Pencil, Plus, Search, Trash2, Undo2 } from 'lucide-react'
 import { Badge, Button, Card, EmptyState, Input, Modal, Tabs } from '../components/ui'
 import { PageHeader } from '../components/PageHeader'
 import { addKeyResultUpdate, createGoal, createKeyResult, deleteGoal, deleteKeyResult, fetchGoals, fetchKeyResultUpdates, fetchKeyResults, setGoalStatus, updateGoal, updateKeyResult, type GoalDraft, type KeyResultDraft } from '../lib/data/goals'
@@ -7,11 +7,11 @@ import type { Goal, GoalStatus, KeyResult, KeyResultUpdate } from '../lib/supaba
 import { useAuth } from '../lib/auth/AuthContext'
 
 type StatusFilter = 'all' | GoalStatus
-type GoalFormState = { title: string; description: string; category: string; startDate: string; dueDate: string }
+type GoalFormState = { title: string; description: string; category: string }
 type ResultFormState = { title: string; metricType: KeyResult['metric_type']; direction: 'increase' | 'decrease'; startValue: string; targetValue: string; unit: string; weight: string }
 type UpdateFormState = { numericValue: string; booleanValue: boolean; note: string }
 
-const emptyForm: GoalFormState = { title: '', description: '', category: '', startDate: '', dueDate: '' }
+const emptyForm: GoalFormState = { title: '', description: '', category: '' }
 const emptyResultForm: ResultFormState = { title: '', metricType: 'numeric', direction: 'increase', startValue: '0', targetValue: '1', unit: '', weight: '1' }
 
 function formFromGoal(goal: Goal): GoalFormState {
@@ -19,8 +19,6 @@ function formFromGoal(goal: Goal): GoalFormState {
     title: goal.title,
     description: goal.description ?? '',
     category: goal.category ?? '',
-    startDate: goal.start_date ?? '',
-    dueDate: goal.due_date ?? '',
   }
 }
 
@@ -29,14 +27,7 @@ function toDraft(form: GoalFormState): GoalDraft {
     title: form.title.trim(),
     description: form.description.trim() || null,
     category: form.category.trim() || null,
-    start_date: form.startDate || null,
-    due_date: form.dueDate || null,
   }
-}
-
-function dateLabel(date: string) {
-  return new Intl.DateTimeFormat('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })
-    .format(new Date(`${date}T12:00:00`))
 }
 
 function errorMessage(error: unknown) {
@@ -45,7 +36,6 @@ function errorMessage(error: unknown) {
     : ''
   if (message.includes('network') || message.includes('fetch')) return 'Нет связи с сервером. Проверь интернет и попробуй ещё раз.'
   if (message.includes('row-level security') || message.includes('permission')) return 'Не удалось сохранить цель в аккаунт. Войди в приложение и повтори действие.'
-  if (message.includes('due_date') || message.includes('goals_due_date_after_start_date')) return 'Дата завершения не может быть раньше даты начала.'
   return 'Не удалось сохранить изменения. Попробуй ещё раз.'
 }
 
@@ -109,6 +99,12 @@ export default function GoalsPage() {
     })
   }, [categoryFilter, goals, search, statusFilter])
 
+  const goalStats = useMemo(() => ({
+    total: goals.length,
+    active: goals.filter(goal => goal.status === 'active').length,
+    completed: goals.filter(goal => goal.status === 'completed').length,
+  }), [goals])
+
   const openCreate = () => {
     setEditingGoal(null)
     setForm(emptyForm)
@@ -135,11 +131,6 @@ export default function GoalsPage() {
       setFormError('Войди в аккаунт, чтобы сохранить цель.')
       return
     }
-    if (form.startDate && form.dueDate && form.dueDate < form.startDate) {
-      setFormError('Дата завершения не может быть раньше даты начала.')
-      return
-    }
-
     setSaving(true)
     setFormError('')
     setActionError('')
@@ -307,9 +298,15 @@ export default function GoalsPage() {
     <PageHeader
       eyebrow="ТВОИ НАМЕРЕНИЯ"
       title="Цели"
-      description="Собери то, к чему хочешь прийти, в одном месте."
+      description="Выбирай важное, разбивай на измеримые шаги и отмечай свой прогресс."
       action={<Button onClick={openCreate}><Plus size={17} /> Новая цель</Button>}
     />
+
+    <section className="goal-overview" aria-label="Сводка по целям">
+      <div className="goal-overview-item"><span>Всего целей</span><strong>{goalStats.total}</strong></div>
+      <div className="goal-overview-item"><span>В работе</span><strong>{goalStats.active}</strong></div>
+      <div className="goal-overview-item"><span>Достигнуто</span><strong>{goalStats.completed}</strong></div>
+    </section>
 
     <Card className="goals-toolbar">
       <div className="goals-filter-row">
@@ -323,18 +320,18 @@ export default function GoalsPage() {
             { value: 'completed', label: 'Выполненные' },
           ]}
         />
-        <label className="goals-category-filter">
-          <span>Категория</span>
-          <select className="input" value={categoryFilter} onChange={event => setCategoryFilter(event.target.value)}>
-            <option value="all">Все категории</option>
-            {categories.map(category => <option key={category} value={category}>{category}</option>)}
-          </select>
-        </label>
       </div>
       <label className="goals-search">
         <Search size={17} aria-hidden="true" />
         <Input value={search} onChange={event => setSearch(event.target.value)} placeholder="Найти цель" aria-label="Найти цель" />
       </label>
+      {categories.length > 0 && <label className="goals-category-filter">
+        <span>Категория</span>
+        <select className="input" value={categoryFilter} onChange={event => setCategoryFilter(event.target.value)}>
+          <option value="all">Все категории</option>
+          {categories.map(category => <option key={category} value={category}>{category}</option>)}
+        </select>
+      </label>}
     </Card>
 
     {actionError && <div className="goals-error" role="alert">{actionError}</div>}
@@ -369,10 +366,6 @@ export default function GoalsPage() {
         <label className="goal-field"><span>Название <b aria-hidden="true">*</b></span><Input autoFocus maxLength={160} required value={form.title} onChange={event => setForm(current => ({ ...current, title: event.target.value }))} placeholder="К чему ты хочешь прийти?" /></label>
         <label className="goal-field"><span>Описание</span><textarea className="input goal-textarea" maxLength={2000} value={form.description} onChange={event => setForm(current => ({ ...current, description: event.target.value }))} placeholder="Почему это важно и что поможет двигаться вперёд?" rows={3} /></label>
         <label className="goal-field"><span>Категория</span><Input maxLength={60} value={form.category} onChange={event => setForm(current => ({ ...current, category: event.target.value }))} placeholder="Например, здоровье или работа" /></label>
-        <div className="goal-date-fields">
-          <label className="goal-field"><span>Дата начала</span><Input type="date" value={form.startDate} onChange={event => setForm(current => ({ ...current, startDate: event.target.value }))} /></label>
-          <label className="goal-field"><span>Срок</span><Input type="date" min={form.startDate || undefined} value={form.dueDate} onChange={event => setForm(current => ({ ...current, dueDate: event.target.value }))} /></label>
-        </div>
         {formError && <div className="goals-error" role="alert">{formError}</div>}
         <div className="goal-form-actions"><Button type="button" variant="secondary" disabled={saving} onClick={closeForm}>Отмена</Button><Button type="submit" disabled={saving}>{saving ? 'Сохраняю…' : editingGoal ? 'Сохранить' : 'Создать цель'}</Button></div>
       </form>
@@ -431,35 +424,42 @@ function GoalCard({ goal, results, updates, onEdit, onDelete, onToggleStatus, on
   onDeleteResult: (result: KeyResult) => void
   onAddUpdate: (result: KeyResult) => void
 }) {
+  const [resultsOpen, setResultsOpen] = useState(results.length === 0)
   const completed = goal.status === 'completed'
   const progress = getGoalProgress(results, updates)
   return <Card className={`goal-card ${completed ? 'goal-card-completed' : ''}`}>
     <div className="goal-card-main">
       <div className="goal-card-heading">
-        <span className="goal-status-icon" aria-hidden="true">{completed ? <Check size={17} /> : <Circle size={17} />}</span>
-        <h2>{goal.title}</h2>
+        <div className="goal-card-title-group">
+          <span className="goal-status-icon" aria-hidden="true">{completed ? <Check size={17} /> : <Circle size={17} />}</span>
+          <div><h2>{goal.title}</h2>{goal.description && <p className="goal-description">{goal.description}</p>}</div>
+        </div>
+        <div className="goal-card-badges">
+          <Badge tone={completed ? 'neutral' : 'accent'}>{completed ? 'Выполнена' : 'В работе'}</Badge>
+          {goal.category && <Badge>{goal.category}</Badge>}
+        </div>
       </div>
-      <div className="goal-card-badges">
-        <Badge tone={completed ? 'neutral' : 'accent'}>{completed ? 'ВЫПОЛНЕНА' : 'АКТИВНА'}</Badge>
-        {goal.category && <Badge>{goal.category}</Badge>}
-      </div>
-      {goal.description && <p className="goal-description">{goal.description}</p>}
-      {(goal.start_date || goal.due_date) && <div className="goal-dates">
-        <Clock3 size={14} aria-hidden="true" />
-        <span>{goal.start_date && `С ${dateLabel(goal.start_date)}`}{goal.start_date && goal.due_date && ' · '}{goal.due_date && `Срок ${dateLabel(goal.due_date)}`}</span>
-      </div>}
       <div className="goal-progress-summary">
-        <div><span>Прогресс цели</span><strong>{progress}%</strong></div>
-        <div className="goal-progress-track"><span style={{ width: `${progress}%` }} /></div>
-        <small>{results.length ? `${results.length} ${pluralize(results.length, 'результат', 'результата', 'результатов')}, расчёт по весам` : 'Добавь Key Results, чтобы считать прогресс'}</small>
+        <div className="goal-progress-label"><span>Общий прогресс</span><strong>{progress}<small>%</small></strong></div>
+        <div className="goal-progress-track" role="progressbar" aria-label={`Прогресс цели «${goal.title}»`} aria-valuemin={0} aria-valuemax={100} aria-valuenow={progress}><span style={{ width: `${progress}%` }} /></div>
+        <small>{results.length ? `${results.length} ${pluralize(results.length, 'результат', 'результата', 'результатов')} · прогресс считается по весу` : 'Добавь первый результат, чтобы отслеживать движение к цели'}</small>
       </div>
       <section className="key-results-section" aria-label={`Результаты цели ${goal.title}`}>
-        <div className="key-results-heading"><h3><Target size={16} /> Key Results</h3><Button variant="secondary" onClick={onAddResult}><Plus size={15} /> Добавить</Button></div>
-        {results.length === 0 ? <p className="key-results-empty">Разбей цель на измеримые шаги или добавь результат «да / нет».</p> : <div className="key-results-list">{results.map(result => <KeyResultCard key={result.id} result={result} updates={updates.filter(item => item.key_result_id === result.id)} onEdit={() => onEditResult(result)} onDelete={() => onDeleteResult(result)} onAddUpdate={() => onAddUpdate(result)} />)}</div>}
+        <div className="key-results-heading">
+          <button className="key-results-toggle" type="button" onClick={() => setResultsOpen(open => !open)} aria-expanded={resultsOpen}>
+            {resultsOpen ? <ChevronUp size={17} /> : <ChevronDown size={17} />}
+            <span>Результаты</span><Badge>{results.length}</Badge>
+          </button>
+          <Button variant="secondary" onClick={onAddResult}><Plus size={15} /> Добавить результат</Button>
+        </div>
+        {resultsOpen && (results.length === 0
+          ? <p className="key-results-empty">Добавь измеримый шаг или отметку «да / нет», ведущую к этой цели.</p>
+          : <div className="key-results-list">{results.map(result => <KeyResultCard key={result.id} result={result} updates={updates.filter(item => item.key_result_id === result.id)} onEdit={() => onEditResult(result)} onDelete={() => onDeleteResult(result)} onAddUpdate={() => onAddUpdate(result)} />)}</div>)}
       </section>
     </div>
     <div className="goal-actions">
-      <Button variant="ghost" onClick={onToggleStatus} aria-label={completed ? `Вернуть цель «${goal.title}» в активные` : `Отметить цель «${goal.title}» выполненной`} title={completed ? 'Вернуть в активные' : 'Отметить выполненной'}>{completed ? <Undo2 size={16} /> : <Check size={16} />}<span>{completed ? 'Вернуть' : 'Выполнена'}</span></Button>
+      <Button variant="ghost" onClick={onToggleStatus} aria-label={completed ? `Вернуть цель «${goal.title}» в активные` : `Отметить цель «${goal.title}» выполненной`} title={completed ? 'Вернуть в активные' : 'Отметить выполненной'}>{completed ? <Undo2 size={16} /> : <Check size={16} />}<span>{completed ? 'Вернуть в работу' : 'Отметить выполненной'}</span></Button>
+      <span className="goal-actions-spacer" />
       <Button variant="ghost" onClick={onEdit} aria-label={`Редактировать цель «${goal.title}»`} title="Редактировать"><Pencil size={16} /><span>Изменить</span></Button>
       <Button variant="ghost" className="goal-delete-button" onClick={onDelete} aria-label={`Удалить цель «${goal.title}»`} title="Удалить"><Trash2 size={16} /><span>Удалить</span></Button>
     </div>
