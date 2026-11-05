@@ -1,6 +1,6 @@
 # It Girl Planner
 
-Персональный адаптивный PWA-каркас на React, TypeScript и Vite. Включает главную, разделы целей и планирования, профиль Maddy, настройки темы и публикацию в GitHub Pages. Данные, аккаунты, цели, задачи и прогресс пока не реализованы.
+Персональное адаптивное PWA на React, TypeScript и Vite. Сейчас подключается Supabase Auth: регистрация по почте и паролю, вход, выход, восстановление пароля и закрытый доступ к приложению. Цели, задачи и прогресс появятся в следующих этапах.
 
 ## Разработка
 
@@ -8,6 +8,10 @@
 npm install
 npm run dev
 ```
+
+Создай `.env.local` по образцу `.env.example`, указав URL проекта Supabase и его **publishable key**, затем запусти `npm run dev`.
+
+Не помещай в приложение `service_role` или secret API key. Publishable key предназначен для браузера; доступ к строкам базы данных должен защищаться RLS.
 
 ## Проверки и сборка
 
@@ -19,13 +23,17 @@ npm run preview
 
 ## Публикация
 
-Workflow `.github/workflows/deploy.yml` собирает проект при push в `main` и загружает `dist` в GitHub Pages. В репозитории открой **Settings → Pages → Build and deployment → Source → GitHub Actions**. Маршруты используют `HashRouter`, а Vite собирает ресурсы с относительным base path, поэтому имя репозитория задавать не требуется.
+Workflow `.github/workflows/deploy.yml` собирает проект при push в `main` и загружает `dist` в GitHub Pages. В **Settings → Secrets and variables → Actions → Variables** добавь `VITE_SUPABASE_URL` и `VITE_SUPABASE_PUBLISHABLE_KEY` для сборки опубликованного приложения.
 
-Публичный репозиторий: https://github.com/elskd/it-girl-planner-pwa. После отправки ветки `main` открой **Settings → Pages → Build and deployment → Source → GitHub Actions**. Ссылка на приложение появится там после успешного деплоя.
+В Supabase Auth добавь адрес локальной разработки и Pages URL в список разрешённых редиректов. Публичный репозиторий: https://github.com/elskd/it-girl-planner-pwa. Приложение: https://elskd.github.io/it-girl-planner-pwa/ .
 
 ## Структура
 
 - `src/App.tsx` — маршруты и состав страниц первого этапа.
+- `src/pages/AuthPage.tsx` — регистрация, вход, сброс и смена пароля.
+- `src/lib/auth/AuthContext.tsx` — состояние сессии и выход из аккаунта.
+- `src/lib/supabase/client.ts` — браузерный клиент Supabase с PKCE.
+- `supabase/migrations/` — миграции и политики доступа для таблиц.
 - `src/pages/` — независимые страницы Dashboard, Goals, Planner, Maddy, Settings и 404.
 - `src/components/` — общие UI-компоненты, шапка и навигация.
 - `src/styles.css` — дизайн-токены Dark/Light Feminine, адаптивная сетка и состояния интерфейса.
@@ -33,4 +41,4 @@ Workflow `.github/workflows/deploy.yml` собирает проект при pus
 - `public/icons/` — PWA-иконки.
 - `vite.config.ts` — Vite, PWA manifest, относительный путь и Vitest.
 
-Следующие области можно вынести в независимые feature-модули: `goals`, `planner`, `maddy`, `dashboard`, `settings`, `auth`, `data`. Для Supabase не созданы фиктивные клиенты и ключи; подключение можно добавить в `src/lib/data/` на отдельном этапе.
+Следующие области можно вынести в независимые feature-модули: `goals`, `planner`, `maddy`, `dashboard`, `settings`, `auth`, `data`.
