@@ -30,15 +30,17 @@ export function EmptyState({ icon, title, children }: { icon: ReactNode; title: 
 export function Modal({ open, title, onClose, children }: { open: boolean; title: string; onClose: () => void; children: ReactNode }) {
   const dialogRef = useRef<HTMLElement | null>(null)
   const previousFocus = useRef<HTMLElement | null>(null)
+  const onCloseRef = useRef(onClose)
+  useEffect(() => { onCloseRef.current = onClose }, [onClose])
   useEffect(() => {
     if (!open) return
     previousFocus.current = document.activeElement instanceof HTMLElement ? document.activeElement : null
     const dialog = dialogRef.current
     const focusable = () => dialog?.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])')
-    const first = focusable()?.[0]
+    const first = dialog?.querySelector<HTMLElement>('[autofocus]') ?? focusable()?.[0]
     ;(first ?? dialog)?.focus()
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') { onClose(); return }
+      if (event.key === 'Escape') { onCloseRef.current(); return }
       if (event.key !== 'Tab') return
       const elements = focusable()
       if (!elements?.length) { event.preventDefault(); dialog?.focus(); return }
@@ -52,7 +54,7 @@ export function Modal({ open, title, onClose, children }: { open: boolean; title
       document.removeEventListener('keydown', handleKeyDown)
       previousFocus.current?.focus()
     }
-  }, [open, onClose])
+  }, [open])
   if (!open) return null
   return <div className="modal-backdrop" onMouseDown={e => { if (e.target === e.currentTarget) onClose() }}><section ref={dialogRef} className="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabIndex={-1}><button type="button" className="modal-close" onClick={onClose} aria-label="Закрыть">×</button><h2 id="modal-title">{title}</h2>{children}</section></div>
 }
